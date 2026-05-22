@@ -191,11 +191,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const staffGrid = document.getElementById('staff-grid-container');
 
+    // === ЗАМЕНИ ЭТУ СТРОКУ НА СВОЙ RAILWAY URL ===
+    const RAILWAY_API = 'https://sataki-production.up.railway.app';
+
     // Fetch single user details from express backend
     async function loadUserProfile(user) {
         try {
             // Attempt to hit server endpoint `/api/discord/:id`
-            const response = await fetch(`/api/discord/${user.id}`);
+            const response = await fetch(`${RAILWAY_API}/api/discord/${user.id}`);
             if (!response.ok) throw new Error('API fetch failed');
             const data = await response.json();
             return {
