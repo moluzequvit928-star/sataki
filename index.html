@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATAKI — Легенда</title>
+    <!-- Google Fonts: Inter for text, Montserrat for headings, Noto Serif JP for Japanese vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,700&family=Noto+Serif+JP:wght@400;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas for falling sakura petals -->
+    <canvas id="sakura-canvas"></canvas>
+
+    <!-- Japanese background watermark kanji -->
+    <div class="watermark-kanji left-kanji">伝説</div>
+    <div class="watermark-kanji right-kanji">規律</div>
+
+    <div class="app-container">
+        <!-- Top Red Neon Title Area (corresponds to the red shape in the drawing) -->
+        <header class="server-header">
+            <div class="neon-red-badge">
+                <span class="jp-sub">サタキ</span>
+                <span class="server-title">SATAKI</span>
+                <span class="jp-sub">ポータル</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Side: Interactive Avatar and Menu Trigger -->
+            <div class="avatar-menu-section">
+                <!-- Discord Server Avatar Container (large black circle in drawing) -->
+                <div class="avatar-ring-container">
+                    <div class="avatar-ring-glow"></div>
+                    <button class="discord-avatar-btn" id="avatar-trigger" aria-label="Открыть меню разделов">
+                        <img src="https://cdn.discordapp.com/attachments/1457694370898645037/1507385420898631750/a_ce0dec9967617df028b42644bbb7dfe8.gif?ex=6a11b592&is=6a106412&hm=e2863b456e61accaa1a6ea97e81fab9bbf678a7b72e0e02f55533837319b1449&" alt="SATAKI Discord Avatar" class="discord-avatar-img">
+                    </button>
+                    <div class="pulse-indicator">
+                        <span>Нажми на меня</span>
+                    </div>
+                </div>
+
+                <!-- Navigation List: appears when avatar is clicked or visible by default with interactive animations -->
+                <nav class="sections-nav" id="sections-nav">
+                    <ul>
+                        <li class="nav-item active" data-target="rules">
+                            <span class="nav-bullet"></span>
+                            <span class="nav-text">ПРАВИЛА <span class="nav-kanji">規律</span></span>
+                        </li>
+                        <li class="nav-item" data-target="verification">
+                            <span class="nav-bullet"></span>
+                            <span class="nav-text">ВЕРИФИКАЦИЯ <span class="nav-kanji">検査</span></span>
+                        </li>
+                        <li class="nav-item" data-target="memo">
+                            <span class="nav-bullet"></span>
+                            <span class="nav-text">ПАМЯТКА <span class="nav-kanji">案内</span></span>
+                        </li>
+                        <li class="nav-item" data-target="staff">
+                            <span class="nav-bullet"></span>
+                            <span class="nav-text">ВЫШКА <span class="nav-kanji">幹部</span></span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Right Side: Red Blurry Info Field (corresponds to the red fuzzy block in the drawing) -->
+            <div class="info-display-field" id="info-display-field">
+                <div class="glow-overlay"></div>
+                
+                <!-- 1. RULES CONTENT -->
+                <section class="info-tab-content active" id="content-rules">
+                    <div class="section-title-wrapper">
+                        <h2>ОСНОВНЫЕ ПРАВИЛА СОСТАВА</h2>
+                        <div class="line-deco"></div>
+                    </div>
+                    <div class="rules-scroll-container">
+                        <div class="rule-card">
+                            <div class="rule-num">01</div>
+                            <p>Запрещено несоблюдение минимальной нормы голосового онлайн-общения.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">02</div>
+                            <p>Участник состава обязан беспристрастно вынести решение о недопуске.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">03</div>
+                            <p>Запрещено демонстрировать свое превосходство над другими участниками.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">04</div>
+                            <p>Запрещено распространение инсайдерской информации.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">05</div>
+                            <p>Отпуск должен быть заранее согласован с руководством.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">06</div>
+                            <p>Участник состава имеет право покинуть ПСЖ и впоследствии вернуться в команду.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">07</div>
+                            <p>Участник сообщества обязан проявлять сдержанность по отношению к пользователям во всех каналах проекта и в личных сообщениях.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">08</div>
+                            <p>Запрещено провоцировать конфликты внутри коллектива.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">09</div>
+                            <p>Запрещено провоцировать других участников состава на нарушение правил проекта.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">10</div>
+                            <p>Запрещены любые деструктивные действия со стороны участника состава.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">11</div>
+                            <p>Участник состава обязан уведомлять курирующий состав об изменении имени пользователя.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">12</div>
+                            <p>Участник состава обязан проходить периодическую аттестацию.</p>
+                        </div>
+                        <div class="rule-card">
+                            <div class="rule-num">13</div>
+                            <p>Участник состава обязан выполнять все требования вышестоящего руководства в рамках работы над проектом.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. VERIFICATION CONTENT -->
+                <section class="info-tab-content" id="content-verification">
+                    <div class="section-title-wrapper">
+                        <h2>ПЛАНИРОВАНИЕ ВЕРИФИКАЦИИ</h2>
+                        <div class="line-deco"></div>
+                    </div>
+                    <p class="section-intro">Этапы проведения голосовой верификации пользователей на сервере. Следуйте вопросам и примечаниям:</p>
+                    
+                    <div class="qa-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q1</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 1: Добро пожаловать на сервер SATAKI, как я могу к вам обращаться?</h3>
+                                <div class="note-box">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>В случае затруднительного прочтения ника обращайтесь на "ВЫ/ВАМ/ВАС".</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q2</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 2: Сколько вам лет?</h3>
+                                <div class="note-box warning">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>Не хочет отвечать: <strong>(Вы согласны с Политикой дискорд?)</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q3</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 3: Ознакомлены ли вы с правилами сервера?</h3>
+                                <div class="note-box">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>Нет. <strong>(Предложите ознакомиться после верификации)</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q4</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 4: Есть какие-то вопросы по поводу сервера?</h3>
+                                <div class="note-box">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>При необходимости отвечаем на вопросы или же проводим навигацию.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q5</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 5: Рассказываем про серверную валюту и возможности её конвертации.</h3>
+                                <div class="note-box accent">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>Получать её можно за любую активность на сервере. При накоплении <strong>22 500 монет</strong> их можно перевести в алмазы через команду <code>/balance</code>, а потом прописать команду <code>/shop</code> и купить деньги / нитро / плюшки.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q6</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 6: В конце верификации предлагаете встать на саппорта.</h3>
+                                <div class="note-box">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>Если человек согласен, просите включить демонстрацию экрана и помогаете заполнить заявку.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-badge">Q7</div>
+                            <div class="timeline-content">
+                                <h3>Вопрос — 7: Навигация по серверу.</h3>
+                                <div class="note-box info">
+                                    <span class="note-tag">Примечание</span>
+                                    <p>Основная тематика сервера — это общение, которое зачастую происходит в модерируемых комнатах. Также у нас есть ивенты и глобальные мероприятия, такие как <strong>трибуны</strong> и <strong>клозы</strong>.</p>
+                                    <p><strong>Трибуны:</strong> Знакомство с новыми людьми, розыгрыши нитро и валюты. За валюту можно создать личную рольку или любовную комнату.</p>
+                                    <p><strong>Ивенты:</strong> Онлайн-игры (шляпа, гартикфон, коднеймс, уно).</p>
+                                    <p><strong>Зона отдыха:</strong> Творческие мероприятия (озвучка, караоке, совместный просмотр фильмов/сериалов/аниме).</p>
+                                    <p><strong>Клозы:</strong> Игры CS2, Dota 2, Valorant.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. MEMO CONTENT -->
+                <section class="info-tab-content" id="content-memo">
+                    <div class="section-title-wrapper">
+                        <h2>ПАМЯТКА ДЛЯ ВЕРИФИКАТОРА</h2>
+                        <div class="line-deco"></div>
+                    </div>
+                    
+                    <div class="memo-grid">
+                        <div class="memo-card full-width">
+                            <h3>Основной регламент верификации</h3>
+                            <ul class="styled-list">
+                                <li>Вы должны вести себя адекватно и грамотно проводить верификацию.</li>
+                                <li>Нужно придерживаться шаблона голосовой верификации.</li>
+                                <li>Запрещено распространять staff-информацию.</li>
+                                <li>Для того чтобы верифицировать пользователя, его аккаунту должно быть <strong>не менее 5 дней</strong> (Исключение: если он говорит, что пришёл с TikTok, YouTube, Shorts и т.п.).</li>
+                                <li>Проводите голосовую верификацию <strong>не более 3 минут</strong>.</li>
+                                <li>Не сидите АФК или в фулл муте в проходной.</li>
+                                <li>Верифицировать нужно только по одному человеку. Если к вам зашли несколько человек, то размучиваем и верифицируем их по очереди, даже если они друзья и просят размутить всех.</li>
+                                <li>Вы имеете полное право поинтересоваться возрастом/именем анверифи, но ни в коем случае нельзя требовать от них эту информацию.</li>
+                                <li>При разборе жалоб обязательно имейте при себе откат.</li>
+                                <li>Когда вы сидите в проходке следите, чтобы всегда оставалось 2 слота для unverify.</li>
+                            </ul>
+                        </div>
+
+                        <div class="memo-card">
+                            <h3>Краткий шаблон верификации</h3>
+                            <div class="speech-template">
+                                <p class="quote">«Добро пожаловать на сервер SATAKI. Сколько вам лет? Есть какие-то вопросы по серверу?»</p>
+                                <p class="subtext">Используется либо при большом наплыве людей, либо если человек говорит, что пришёл на клоз.</p>
+                            </div>
+                        </div>
+
+                        <div class="memo-card">
+                            <h3>Техническое выполнение</h3>
+                            <ul class="styled-list">
+                                <li>Используйте команду: <code>/sup action</code></li>
+                                <li>Или ПКМ: <strong>Правой кнопкой мыши на человека ➔ Приложения ➔ verification</strong> (и только потом выбираем гендерную роль или недопуск).</li>
+                            </ul>
+                        </div>
+
+                        <div class="memo-card full-width reject-reasons">
+                            <h3>Причины недопуска в верификации</h3>
+                            <div class="reasons-grid">
+                                <div class="reason-item">
+                                    <span class="warning-badge">1 Пред-е</span>
+                                    <p>Неадекватное поведение во время голосовой верификации</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Непроходной возраст (менее 13 лет)</p>
+                                </div>
+                                <div class="reason-item">
+                                    <span class="warning-badge">1 Пред-е</span>
+                                    <p>Отказ от изменения профиля в случае наличия запреток</p>
+                                </div>
+                                <div class="reason-item">
+                                    <span class="warning-badge">1 Пред-е</span>
+                                    <p>Отказ убирать ссылки с профиля под спойлер</p>
+                                </div>
+                                <div class="reason-item">
+                                    <span class="warning-badge">Проверка</span>
+                                    <p><strong>Джампинг</strong> (прыгает по проходкам более 3 раз за минуту: пишем в ЛС "тебя не подключает?", при игноре — недопуск)</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Новорег аккаунт (менее 5 дней в Discord)</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Твинк аккаунт в целях обхода наказания</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Нахождение в стране эмбарго (в случае признания)</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Предложение сексуальных и эротических услуг</p>
+                                </div>
+                                <div class="reason-item critical">
+                                    <span class="warning-badge red">Сразу</span>
+                                    <p>Предложение психотропных и психоактивных веществ</p>
+                                </div>
+                                <div class="reason-item">
+                                    <span class="warning-badge">1 Пред-е</span>
+                                    <p>Использование войсмода и soundpad</p>
+                                </div>
+                                <div class="reason-item">
+                                    <span class="warning-badge">Язык</span>
+                                    <p>Человек не говорит по-русски — если вы понимаете друг друга (обязательно на русском языке), то можно пропускать</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. STAFF CONTENT (ВЫШКА) -->
+                <section class="info-tab-content" id="content-staff">
+                    <div class="section-title-wrapper">
+                        <h2>КУРИРУЮЩИЙ СОСТАВ (ВЫШКА)</h2>
+                        <div class="line-deco"></div>
+                    </div>
+
+                    
+                    <div class="staff-role-filters">
+                        <button class="filter-btn active" data-role="all">Все</button>
+                        <button class="filter-btn" data-role="admin">Администрация</button>
+                        <button class="filter-btn" data-role="assistant">Ассистенты</button>
+                        <button class="filter-btn" data-role="curator">Кураторы</button>
+                        <button class="filter-btn" data-role="master">Мастера</button>
+                    </div>
+
+                    <div class="staff-grid" id="staff-grid-container">
+                        <!-- Cards will be populated dynamically by script.js -->
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <span>Загрузка профилей руководства...</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Foot decoration -->
+    <footer class="app-footer">
+        <p>© 2026 SATAKI. Разработано в японском стиле.</p>
+        <p class="signature">by nevermore</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
